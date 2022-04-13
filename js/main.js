@@ -7,20 +7,20 @@ const ctx = canvas.getContext('2d');
 let currentDirection = new Vector(-1,0)
 let gameSize = 800;
 let backgroundColor = "black";
-
-let snakeColor = 'white';
-let snakeUnit = 10;
-
-let point = new Point()
-point.spawn(ctx)
-let player1 = new Snake();
-canvas.style.backgroundColor = backgroundColor;
 canvas.width = canvas.height = gameSize;//set width canvas - set height canvas.
 ctx.fillStyle = backgroundColor;
 
+
 ctx.fillRect(0, 0, gameSize, gameSize)
+let snakeColor = 'white';
+let snakeUnit = 10
+
+
+let point = new Point()
+point.spawn()
+let player1 = new Snake(point);
 player1.draw();
-setInterval(function () {
+let timeId = setInterval(function () {
     player1.move()
 }, 200)
 

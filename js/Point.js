@@ -3,26 +3,23 @@ class Point {
         this.x = x;
         this.y = y;
     }
-    draw(ctx){
-        ctx .fillStyle = 'green';
-        ctx.fillRect(this.x,this.y,10,10)
-    }
-    clear(ctx){
-        ctx.clearRect(this.x,this.y,10,10)
-        ctx.fillStyle = backgroundColor;
+    clear(){
+        ctx.clearRect(this.x,this.y,snakeUnit,snakeUnit)
+        canvas.style.backgroundColor = backgroundColor;
     }
     getRandomNumber (){
         let randomNumber = Math.floor(Math.random() * gameSize);
         randomNumber -= randomNumber % snakeUnit;
         return randomNumber;
     }
-    spawn (ctx){
-        this.clear(ctx);
+    draw(){
+        ctx.fillStyle = 'white';
+        ctx.fillRect(this.x,this.y,snakeUnit,snakeUnit)
+    }
+    spawn (){
+        this.clear();
         this.x = this.getRandomNumber();
         this.y = this.getRandomNumber();
-        this.draw(ctx);
-        console.log(this.x)
-        console.log(this.y)
-
+        this.draw();
     }
 }
