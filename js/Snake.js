@@ -7,6 +7,8 @@ class Snake {
         ]
         this.speed = new Vector(-1,0)
         this.point = point;
+        this.head = this.body[0];
+
     }
 
     draw(){
@@ -31,25 +33,40 @@ class Snake {
         //     ctx.fillRect(this.body[i].x,this.body[i].y,snakeUnit,snakeUnit)
         // }
     }
+    handleBound(){
+        let point3 = new Point();
+        if (this.head.x < 0 ){
+            this.head.x = gameSize - snakeUnit;
+        }
+        if (this.head.x > gameSize - snakeUnit){
+            this.head.x = 0;
+        }
+        if (this.head.y < 0){
+            this.head.y = gameSize - snakeUnit;
+        }
+        if(this.head.y > gameSize - snakeUnit){
+            this.head.y = 0;
+        }
+        // point3.spawn();
+    }
 
     move(){
         this.clear();
 
         let nextX = this.body[0].x + this.speed.x * snakeUnit;
         let nextY = this.body[0].y + this.speed.y * snakeUnit;
-
-
         // neu ma x , y cua snake == x,y cua point
         //1. remove point
         //2. tao ra 1 cai point moi o vi tri random
+
+
         if (nextX === this.point.x && nextY === this.point.y){
             ctx.fillStyle = backgroundColor;
             let point2 = new Point()
             point2.spawn();
             this.point = point2
-
             this.body.push(new Vector() )
-
+            // this.speed += new Vector(1,1);
         }
         for (let i = this.body.length - 1; i >= 1 ; i--) {
             this.body[i].x = this.body[i-1].x;
@@ -58,7 +75,7 @@ class Snake {
         this.body[0].x += this.speed.x * snakeUnit;
         this.body[0].y += this.speed.y * snakeUnit;
         for (let i = 1; i < this.body.length; i++) {
-            if (nextX===this.body[i].x && nextY === this.body[i].y){
+            if (nextX === this.body[i].x && nextY === this.body[i].y){
                 clearInterval(timeId)
                 ctx.fillStyle = backgroundColor
                 ctx.fillRect(this.point.x,this.point.y,snakeUnit,snakeUnit);
@@ -71,6 +88,7 @@ class Snake {
 
 
         }
+        this.handleBound();
 
         this.draw();
     }

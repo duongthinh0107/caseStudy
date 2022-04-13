@@ -13,7 +13,7 @@ ctx.fillStyle = backgroundColor;
 
 ctx.fillRect(0, 0, gameSize, gameSize)
 let snakeColor = 'white';
-let snakeUnit = 10
+let snakeUnit = 30
 
 
 let point = new Point()
