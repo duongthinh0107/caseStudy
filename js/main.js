@@ -10,24 +10,30 @@ canvas.setAttribute('id','canvas');
 document.getElementById('container').appendChild(canvas);
 const ctx = canvas.getContext('2d');
 let currentDirection = new Vector(-1,0)
-let gameSize = 900;
-let backgroundColor = '#181825';
+let gameSize = 800;
+let backgroundColor = '#181825';//#181825
 let count = 0;
-canvas.width = canvas.height = 1000;//set width canvas - set height canvas.
-ctx.fillStyle = 'red'
-ctx.fillRect(0, 0, 1000, 100)
-ctx.font = "30px Verdana";
-ctx.fillStyle = backgroundColor
-ctx.fillText(`score:${count}`,5,50)
-ctx.fillStyle = backgroundColor;
-ctx.fillRect(0, 100, 1000, gameSize)
+canvas.width = canvas.height = gameSize;//set width canvas - set height canvas.
+// ctx.fillStyle = 'red'
+// ctx.fillRect(0, 0, 1000, 100)
+// ctx.font = "30px Verdana";
+// ctx.fillStyle = backgroundColor
+// ctx.fillText(`score:${count}`,5,50)
+// ctx.fillStyle = backgroundColor;
+// ctx.fillRect(0, 100, 1000, gameSize)
 let snakeColor = 'white';
 let snakeUnit = 20;
 let point = new Point()
 let player1 = new Snake(point);
 point.spawn()
 player1.draw();
+let reset = document.getElementById('replay');
+reset.addEventListener('click',clear);
+function clear(){
+    count = 0;
+    player1 = new Snake()
 
+}
 let timeId = setInterval(function () {
         player1.move()
 }, 50)

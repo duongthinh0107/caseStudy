@@ -1,4 +1,5 @@
 class Point {
+
     constructor(x,y) {
         this.x = x;
         this.y = y;
@@ -8,17 +9,16 @@ class Point {
         randomNumber -= randomNumber % snakeUnit;
         return randomNumber;
     }
+    getRandomColor() {
+        return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
+    }
     draw(){
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = this.getRandomColor();
         ctx.fillRect(this.x,this.y,snakeUnit,snakeUnit)
     }
     spawn (){
-        this.x = this.getRandomNumber(1000);
-        this.y = this.getRandomNumber(900)+100;
-        //console.log("vi tri point moi",this.x)
-        //console.log("vi tri point moi",this.y)
-
-
+        this.x = this.getRandomNumber(gameSize);
+        this.y = this.getRandomNumber(gameSize);
         this.draw();
     }
 }

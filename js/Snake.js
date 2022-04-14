@@ -13,7 +13,7 @@ class Snake {
     }
 
     draw(){
-        ctx.fillStyle = 'red'
+        ctx.fillStyle = 'white';
         ctx.fillRect(this.body[0].x,this.body[0].y,snakeUnit,snakeUnit)
         console.log('d',this.body[0].x);
         console.log('snakeUnit',snakeUnit);
@@ -29,7 +29,7 @@ class Snake {
         ctx.strokeStyle = "#232332";
         ctx.shadowBlur = 0;
         for (let i = 0; i < 100; i++) {
-            let f = (400/snakeUnit) * i;
+            let f = snakeUnit * i;
             ctx.beginPath();
             ctx.moveTo(f, 0);
             ctx.lineTo(f, 1000);
@@ -59,21 +59,21 @@ class Snake {
     handleBound(){
 
         if (this.head.x < 0 ){
-            this.head.x = 1000 - snakeUnit;
+            this.head.x = gameSize - snakeUnit;
 
         }
-        if (this.head.x > 1000 - snakeUnit){
+        if (this.head.x > gameSize - snakeUnit){
             this.head.x = 0;
 
         }
-        if (this.head.y < 100){
-            this.head.y = 1000 - snakeUnit;
+        if (this.head.y < 0){
+            this.head.y = gameSize - snakeUnit;
             //console.log(this.head.y);
 
 
         }
-        if(this.head.y > 1000 - snakeUnit){
-            this.head.y = 100;
+        if(this.head.y > gameSize - snakeUnit){
+            this.head.y = 0;
 
         }
     }
@@ -96,11 +96,13 @@ class Snake {
             this.point = point2
             this.body.push(new Vector() )
             count++;
-            ctx.fillStyle = 'red'
-            ctx.fillRect(0, 0, 1000, 100)
-            ctx.font = "30px Verdana";
-            ctx.fillStyle = backgroundColor
-            ctx.fillText(`score:${count}`,5,50,100)
+            let ui = document.getElementById('ui');
+            ui.innerHTML = `Score:${count}`;
+            // ctx.fillStyle = 'red'
+            // ctx.fillRect(0, 0, 1000, 100)
+            // ctx.font = "30px Verdana";
+            // ctx.fillStyle = backgroundColor
+            // ctx.fillText(`score:${count}`,5,50,100)
             // requestAnimationFrame(this.move)
             // score.count++;
             // score.draw()
@@ -127,10 +129,6 @@ class Snake {
                 ctx.font = '100px Comic Sans MS'
                 ctx.textAlign = 'center'
                 ctx.fillText('lose',400,400)
-                ctx.fillStyle = 'red'
-                ctx.fillRect(0, 0, 1000, 100)
-                ctx.fillStyle = 'red';
-                ctx.font = '100px Comic Sans MS'
 
                 ctx.fillText(`score:${count}`,500,500)
                 return;
@@ -138,10 +136,13 @@ class Snake {
 
 
         }
+
         
         //console.log("head",this.head);
         this.handleBound();
         this.draw();
         this.drawGrid()
     }
+
+
 }
