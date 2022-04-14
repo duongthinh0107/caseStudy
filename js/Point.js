@@ -3,12 +3,8 @@ class Point {
         this.x = x;
         this.y = y;
     }
-    clear(){
-        ctx.clearRect(this.x,this.y,snakeUnit,snakeUnit)
-        canvas.style.backgroundColor = backgroundColor;
-    }
-    getRandomNumber (){
-        let randomNumber = Math.floor(Math.random() * gameSize);
+    getRandomNumber (a){
+        let randomNumber = Math.floor(Math.random() * a);
         randomNumber -= randomNumber % snakeUnit;
         return randomNumber;
     }
@@ -17,9 +13,12 @@ class Point {
         ctx.fillRect(this.x,this.y,snakeUnit,snakeUnit)
     }
     spawn (){
-        this.clear();
-        this.x = this.getRandomNumber();
-        this.y = this.getRandomNumber();
+        this.x = this.getRandomNumber(1000);
+        this.y = this.getRandomNumber(900)+100;
+        //console.log("vi tri point moi",this.x)
+        //console.log("vi tri point moi",this.y)
+
+
         this.draw();
     }
 }

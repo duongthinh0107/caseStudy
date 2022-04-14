@@ -5,27 +5,41 @@ const right = 'd';
 const down = 's';
 const ctx = canvas.getContext('2d');
 let currentDirection = new Vector(-1,0)
-let gameSize = 800;
+let gameSize = 900;
 let backgroundColor = "black";
-canvas.width = canvas.height = gameSize;//set width canvas - set height canvas.
+let count = 0;
+canvas.width = canvas.height = 1000;//set width canvas - set height canvas.
+ctx.fillStyle = 'red'
+ctx.fillRect(0, 0, 1000, 100)
+ctx.font = "30px Verdana";
+ctx.fillStyle = backgroundColor
+
+ctx.fillText(`score:${count}`,5,50)
+
+
 ctx.fillStyle = backgroundColor;
 
+// ctx.fillText('Point:',0,0)
 
-ctx.fillRect(0, 0, gameSize, gameSize)
+
+ctx.fillRect(0, 100, 1000, gameSize)
 let snakeColor = 'white';
-let snakeUnit = 30
-
-
+let snakeUnit = 20;
+//console.log("vvlvllvlv")
 let point = new Point()
-point.spawn()
 let player1 = new Snake(point);
+
+point.spawn()
 player1.draw();
 let timeId = setInterval(function () {
-    player1.move()
+
+
+        player1.move()
+
 }, 200)
 
 document.onkeydown = function (e) {
-    // console.log(e.key)
+    // //console.log(e.key)
     switch (e.key) {
         case left:
             if (currentDirection.x === 1) break;

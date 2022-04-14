@@ -4,8 +4,18 @@
     border: 0;
     font-size: 100%;
 }
-.canvas{
-    width: 500px;
-    height: 500px;
-    border: 1px solid;
+.container{
+    width: 1000px;
+    height: 1000px;
+    background-color: chocolate;
+}
+.btn1{
+    text-align: center;
+}
+.btn{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
 }
