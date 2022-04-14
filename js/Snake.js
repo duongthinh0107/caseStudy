@@ -24,6 +24,23 @@ class Snake {
             ctx.fillRect(this.body[i].x,this.body[i].y,snakeUnit,snakeUnit)
         }
     }
+    drawGrid(){
+        ctx.lineWidth = 1.1;
+        ctx.strokeStyle = "#232332";
+        ctx.shadowBlur = 0;
+        for (let i = 0; i < 100; i++) {
+            let f = (400/snakeUnit) * i;
+            ctx.beginPath();
+            ctx.moveTo(f, 0);
+            ctx.lineTo(f, 1000);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0, f);
+            ctx.lineTo(1000, f);
+            ctx.stroke();
+            ctx.closePath();
+        }
+    }
     clear(){
         //ve lai mau den
         ctx.fillStyle = backgroundColor
@@ -60,6 +77,7 @@ class Snake {
 
         }
     }
+
 
     move(){
         this.clear();
@@ -120,8 +138,10 @@ class Snake {
 
 
         }
+        
         //console.log("head",this.head);
         this.handleBound();
         this.draw();
+        this.drawGrid()
     }
 }

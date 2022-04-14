@@ -27,6 +27,7 @@ let point = new Point()
 let player1 = new Snake(point);
 point.spawn()
 player1.draw();
+
 let timeId = setInterval(function () {
         player1.move()
 }, 50)
