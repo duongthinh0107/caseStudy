@@ -1,30 +1,21 @@
 class Snake {
     constructor(point) {
         this.body = [
-            new Vector(snakeUnit*30,snakeUnit*20),
-            new Vector(snakeUnit*31,snakeUnit*20),
-            new Vector(snakeUnit*32,snakeUnit*20)
+            new SnakeBody(snakeUnit*30
+                ,snakeUnit*50)
         ]
-        this.speed = new Vector(-1,0)
+        this.speed = new SnakeBody(0,1)
         this.point = point;
         this.head = this.body[0];
-        // this.count = 0;
 
     }
 
     draw(){
         ctx.fillStyle = 'white';
         ctx.fillRect(this.body[0].x,this.body[0].y,snakeUnit,snakeUnit)
-        console.log('d',this.body[0].x);
-        console.log('snakeUnit',snakeUnit);
-
-
-        // ctx.fillStyle= snakeColor;
         for (let i = 1; i < this.body.length ; i++) {
             ctx.fillRect(this.body[i].x,this.body[i].y,snakeUnit,snakeUnit)
         }
-    }
-    drawGrid(){
         ctx.lineWidth = 1.1;
         ctx.strokeStyle = "#232332";
         ctx.shadowBlur = 0;
@@ -44,20 +35,11 @@ class Snake {
     clear(){
         //ve lai mau den
         ctx.fillStyle = backgroundColor
-        // ctx.fillRect(this.body[0].x,this.body[0].y,snakeUnit,snakeUnit)
-        // ctx.fillStyle= snakeColor;
         for (let i = 0; i < this.body.length ; i++) {
             ctx.fillRect(this.body[i].x,this.body[i].y,snakeUnit,snakeUnit)
         }
-        // ctx.fillStyle = backgroundColor;
-        // ctx.fillRect(this.body[0].x,this.body[0].y,snakeUnit,snakeUnit)
-        // ctx.fillStyle= backgroundColor;
-        // for (let i = 1; i < this.body.length ; i++) {
-        //     ctx.fillRect(this.body[i].x,this.body[i].y,snakeUnit,snakeUnit)
-        // }
     }
-    handleBound(){
-
+    wall(){
         if (this.head.x < 0 ){
             this.head.x = gameSize - snakeUnit;
 
@@ -68,7 +50,6 @@ class Snake {
         }
         if (this.head.y < 0){
             this.head.y = gameSize - snakeUnit;
-            //console.log(this.head.y);
 
 
         }
@@ -76,6 +57,9 @@ class Snake {
             this.head.y = 0;
 
         }
+    }
+    boom(){
+
     }
 
 
@@ -87,29 +71,15 @@ class Snake {
         //1. remove point
         //2. tao ra 1 cai point moi o vi tri random
 
-        //va chanem
+        //collision
         if (nextX === this.point.x && nextY === this.point.y){
-            // ctx.fillStyle = backgroundColor;
             let point2 = new Point()
-            //console.log("va cham",point2.x)
             point2.spawn();
             this.point = point2
-            this.body.push(new Vector() )
+            this.body.push(new SnakeBody() )
             count++;
             let ui = document.getElementById('ui');
             ui.innerHTML = `Score:${count}`;
-            // ctx.fillStyle = 'red'
-            // ctx.fillRect(0, 0, 1000, 100)
-            // ctx.font = "30px Verdana";
-            // ctx.fillStyle = backgroundColor
-            // ctx.fillText(`score:${count}`,5,50,100)
-            // requestAnimationFrame(this.move)
-            // score.count++;
-            // score.draw()
-            // point2.spawn();
-
-
-            // this.speed += new Vector(1,1);
         }
         //
         for (let i = this.body.length - 1; i >= 1 ; i--) {
@@ -129,7 +99,7 @@ class Snake {
                 ctx.font = '100px Comic Sans MS'
                 ctx.textAlign = 'center'
                 ctx.fillText('lose',400,400)
-
+                document.getElementById('replay').hidden = false;
                 ctx.fillText(`score:${count}`,500,500)
                 return;
             }
@@ -139,9 +109,9 @@ class Snake {
 
         
         //console.log("head",this.head);
-        this.handleBound();
+        this.wall();
         this.draw();
-        this.drawGrid()
+        // this.drawGrid()
     }
 
 

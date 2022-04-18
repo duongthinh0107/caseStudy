@@ -9,11 +9,16 @@ class Point {
         randomNumber -= randomNumber % snakeUnit;
         return randomNumber;
     }
+    clear(){
+        ctx.fillStyle = backgroundColor;
+        ctx.fillRect(this.x,this.y,snakeUnit,snakeUnit)
+    }
     getRandomColor() {
         return "hsl(" + Math.random() * 360 + ", 100%, 75%)";
     }
     draw(){
-        ctx.fillStyle = this.getRandomColor();
+        this.color = this.getRandomColor();
+        ctx.fillStyle = this.color;
         ctx.fillRect(this.x,this.y,snakeUnit,snakeUnit)
     }
     spawn (){
