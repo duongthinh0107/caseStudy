@@ -1,11 +1,10 @@
 class Point {
-
     constructor(x,y) {
         this.x = x;
         this.y = y;
     }
-    getRandomNumber (a){
-        let randomNumber = Math.floor(Math.random() * a);
+    getRandomNumber (){
+        let randomNumber = Math.floor(Math.random() * gameSize);
         randomNumber -= randomNumber % snakeUnit;
         return randomNumber;
     }

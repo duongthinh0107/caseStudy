@@ -1,44 +1,63 @@
-//create canvas and draw gameSize
+//create canvas and draw gameSize-----------------------
 const canvas = document.createElement('canvas');
 canvas.setAttribute('id', 'canvas');
 document.getElementById('game-play').appendChild(canvas);
+const ctx = canvas.getContext('2d');
+const gameSize = 800;
+canvas.width = canvas.height = gameSize;//set width canvas - set height canvas.
+//set key move----------------------------------------------
+let gameMode = false;
+let left = 'a';
+let up = 'w';
+let right = 'd';
+let down = 's';
+
+//hidden score and reset-btn-----------------------------
 document.getElementById('replay').hidden = true;
 document.getElementById('ui').hidden = true;
-
-const ctx = canvas.getContext('2d');
-let gameSize = 800;
-let snakeUnit = 20;
+const snakeUnit = 20;
 let count = 0;
 let timeId;
-let snakeColor = 'white';
-let backgroundColor = '#181825';//#181825
-canvas.width = canvas.height = gameSize;//set width canvas - set height canvas.
-function startGame (){
-    document.getElementById('start').hidden = true;
+const snakeColor = 'white';
+const backgroundColor = '#181825';
+let rs = document.getElementById('replay');
+rs.addEventListener('click', reset);
+let snakeIndex = new SnakeBody(-1, 0)
+//event start game-----------------------------------------
+
+let point = new Point()
+
+let player1 = new Snake(point, false);
+function startGame() {
     document.getElementById('canvas').style.backgroundColor = '#181825'
     document.getElementById('ui').hidden = false;
+    document.getElementById('button').hidden = true;
+    point.spawn()
+    player1.isWall = true;
+    player1.draw();
+    timeId = setInterval(function () {
+        player1.move()
+    }, 100)
+}
+let noWall = document.getElementById('no-wall');
+noWall.addEventListener('click',click1)
+function click1() {
+    document.getElementById('canvas').style.backgroundColor = '#181825'
+    document.getElementById('ui').hidden = false;
+    document.getElementById('button').hidden = true;
+    point.spawn()
+    player1.isWall = false;
+    player1.draw();
+    timeId = setInterval(function () {
+        player1.move()
+    }, 100)
+}
 
-//set key move
-    const left = 'a';
-    const up = 'w';
-    const right = 'd';
-    const down = 's';
-
-//----------------------------------------------------------
-let snakeIndex = new SnakeBody(-1, 0)
-let point = new Point()
-let player1 = new Snake(point);
-point.spawn()
-player1.draw();
-let reset = document.getElementById('replay');
-reset.addEventListener('click', clear);
-function clear() {
+function reset() {
     count = 0;
     ctx.fillStyle = backgroundColor
     ctx.fillRect(0, 0, gameSize, gameSize)
-    // player1.clear()
-    player1 = new Snake(point)
-    // player1.drawGrid()
+    player1 = new Snake(point, gameMode)
     player1.draw()
     document.getElementById('replay').hidden = true;
     point.clear();
@@ -48,9 +67,6 @@ function clear() {
         player1.move()
     }, 150)
 }
-timeId = setInterval(function () {
-    player1.move()
-}, 100)
 document.onkeydown = function (e) {
     switch (e.key) {
         case left:
@@ -75,7 +91,8 @@ document.onkeydown = function (e) {
             break;
     }
 }
-}
+// }
+
 //---------------------------------------------------
 
 //----------------------------------------------
