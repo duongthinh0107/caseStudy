@@ -28,6 +28,7 @@ let snakeIndex = new SnakeBody(-1, 0)
 let point = new Point()
 
 let player1 = new Snake(point, false);
+
 function startGame() {
     document.getElementById('canvas').style.backgroundColor = '#181825'
     document.getElementById('ui').hidden = false;
@@ -37,10 +38,12 @@ function startGame() {
     player1.draw();
     timeId = setInterval(function () {
         player1.move()
-    }, 100)
+    }, 120)
 }
+
 let noWall = document.getElementById('no-wall');
-noWall.addEventListener('click',click1)
+noWall.addEventListener('click', click1)
+
 function click1() {
     document.getElementById('canvas').style.backgroundColor = '#181825'
     document.getElementById('ui').hidden = false;
@@ -50,7 +53,7 @@ function click1() {
     player1.draw();
     timeId = setInterval(function () {
         player1.move()
-    }, 100)
+    }, 120)
 }
 
 function reset() {
@@ -67,6 +70,7 @@ function reset() {
         player1.move()
     }, 150)
 }
+
 document.onkeydown = function (e) {
     switch (e.key) {
         case left:
@@ -91,80 +95,14 @@ document.onkeydown = function (e) {
             break;
     }
 }
-// }
 
-//---------------------------------------------------
 
-//----------------------------------------------
-// const max_fireworks = 5,
-//     max_sparks = 50;
-// // let canvas = document.getElementById('myCanvas');
-// // let context = canvas.getContext('2d');
-// let fireworks = [];
-//
-// for (let i = 0; i < max_fireworks; i++) {
-//     let firework = {
-//         sparks: []
-//     };
-//     for (let n = 0; n < max_sparks; n++) {
-//         let spark = {
-//             vx: Math.random() * 5 + .5,
-//             vy: Math.random() * 5 + .5,
-//             weight: Math.random() * .3 + .03,
-//             red: Math.floor(Math.random() * 2),
-//             green: Math.floor(Math.random() * 2),
-//             blue: Math.floor(Math.random() * 2)
-//         };
-//         if (Math.random() > .5) spark.vx = -spark.vx;
-//         if (Math.random() > .5) spark.vy = -spark.vy;
-//         firework.sparks.push(spark);
-//     }
-//     fireworks.push(firework);
-//     resetFirework(firework);
-// }
-// window.requestAnimationFrame(explode);
-// //------------------------------------------------
-// // function resetFirework(firework) {
-// //     firework.x = Math.floor(Math.random() * canvas.width);
-// //     firework.y = canvas.height;
-// //     firework.age = 0;
-// //     firework.phase = 'fly';
-// // }
-// //---------------------------------------------------
-// // function explode() {
-// //     context.clearRect(0, 0, canvas.width, canvas.height);
-// //     fireworks.forEach((firework,index) => {
-// //         if (firework.phase === 'explode') {
-// //             firework.sparks.forEach((spark) => {
-// //                 for (let i = 0; i < 10; i++) {
-// //                     let trailAge = firework.age + i;
-// //                     let x = firework.x + spark.vx * trailAge;
-// //                     let y = firework.y + spark.vy * trailAge + spark.weight * trailAge * spark.weight * trailAge;
-// //                     let fade = i * 20 - firework.age * 2;
-// //                     let r = Math.floor(spark.red * fade);
-// //                     let g = Math.floor(spark.green * fade);
-// //                     let b = Math.floor(spark.blue * fade);
-// //                     ctx.beginPath();
-// //                     ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',1)';
-// //                     ctx.rect(x, y, 4, 4);
-// //                     ctx.fill();
-// //                 }
-// //             });
-// //             firework.age++;
-// //             if (firework.age > 100 && Math.random() < .05) {
-// //                 resetFirework(firework);
-// //             }
-// //         } else {
-// //             firework.y = firework.y - 10;
-// //             for (let spark = 0; spark < 15; spark++) {
-// //                 ctx.beginPath();
-// //                 ctx.fillStyle = 'rgba(' + index * 50 + ',' + spark * 17 + ',0,1)';
-// //                 ctx.rect(firework.x + Math.random() * spark - spark / 2, firework.y + spark * 4, 4, 4);
-// //                 ctx.fill();
-// //             }
-// //             if (Math.random() < .001 || firework.y < 200) firework.phase = 'explode';
-// //         }
-// //     });
-// //     window.requestAnimationFrame(explode);
-// // }
+let x = 5;
+let b1 = true;
+let b2 = false;
+if ((x == 4) && !b2)
+    console.log("1 ");
+console.log("2 ");
+if ((b2 == true) && b1)
+    console.log("3 ");
 

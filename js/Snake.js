@@ -61,10 +61,7 @@ class Snake {
     move() {
         this.clear();
         let nextX = this.head.x + this.speed.x * snakeUnit;
-        console.log(nextX);
         let nextY = this.head.y + this.speed.y * snakeUnit;
-        console.log(nextY);
-
         // neu ma x , y cua snake == x,y cua point
         //1. remove point
         //2. tao ra 1 cai point moi o vi tri random
